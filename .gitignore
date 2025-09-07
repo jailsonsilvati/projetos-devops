@@ -1,0 +1,75 @@
+# ============================================
+# Arquivo .gitignore Padrão
+# ============================================
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependências
+node_modules/
+jspm_packages/
+
+# Build
+dist/
+build/
+tmp/
+temp/
+.out/
+.cache/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+.eggs/
+.venv/
+env/
+venv/
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Outros
+*.tgz
+*.zip
+*.tar
+*.gz
+*.tmp
+
+# AWS e Cloud
+.aws/
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
+.terraform.lock.hcl
