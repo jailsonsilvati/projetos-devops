@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sessao-pvc # nome do PersistentVolumeClaim
+spec:
+  accessModes: ["ReadWriteOnce"] # modo de acesso ao volume
+  resources:
+    requests:
+      storage: 1Gi # tamanho do volume persistente

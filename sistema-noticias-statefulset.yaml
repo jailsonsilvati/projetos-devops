@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sistema-noticias-statefulset
+spec:
+  serviceName: svc-sistema-noticias # nome do serviço headless associado ao StatefulSet
+  replicas: 1    # número de réplicas desejadas
+  selector:
+    matchLabels: # especifica quais pods pertencem a este StatefulSet
+      app: sistema-noticias  # rótulo usado para identificar os pods
+  template:                  # especifica o template para os pods gerenciados pelo StatefulSet
+    metadata:               # metadados do pod
+      name: sistema-noticias
+      labels:
+        app: sistema-noticias # rótulo usado para identificar os pods
+    spec:
+      containers:
+        - name: sistema-noticias-container
+          image: docker.io/aluracursos/sistema-noticias:1
+          ports:
+            - containerPort: 80
+          envFrom: # variáveis de ambiente do ConfigMap
+            - configMapRef: # referência ao ConfigMap
+                name: sistema-configmap # nome do ConfigMap
+          resources: # recursos solicitados e limites
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m" # limites de recursos do container
+          volumeMounts: # monta os volumes persistentes nos pods
+            - name: imagem # nome do volume persistente
+              mountPath: /var/www/html/uploads # caminho onde o volume será montado no container
+            - name: sessao # nome do volume persistente
+              mountPath: /tmp # caminho onde o volume será montado no container 
+      volumes: 
+        - name: imagem # nome do volume persistente
+          persistentVolumeClaim:
+            claimName: imagem-pvc # nome do PersistentVolumeClaim
+        - name: sessao # nome do volume persistente
+          persistentVolumeClaim:
+            claimName: sessao-pvc # nome do PersistentVolumeClaim        
+
+  
