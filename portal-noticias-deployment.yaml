@@ -21,6 +21,13 @@ spec:
           envFrom:
             - configMapRef:
                 name: portal-configmap
+          livenessProbe:
+            httpGet: # verifica se o container está vivo
+               path: / # caminho para a verificação de saúde
+               port: 80
+            periodSeconds: 10  # intervalo entre as verificações
+            failureThreshold: 3 # número de falhas antes de considerar o container como não saudável e reiniciá-lo
+            initialDelaySeconds: 20 # tempo de espera antes da primeira verificação apos o container iniciar
           resources:
             requests:
               memory: "64Mi"
