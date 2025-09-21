@@ -30,7 +30,7 @@ spec:
             initialDelaySeconds: 20 # tempo de espera antes da primeira verificação apos o container iniciar
           readinessProbe:
             httpGet: # verifica se o container está vivo
-               path: /inserir_noticias.php # caminho para a verificação de saúde
+               path: / # caminho para a verificação de saúde
                port: 80
             periodSeconds: 10  # intervalo entre as verificações
             failureThreshold: 5
